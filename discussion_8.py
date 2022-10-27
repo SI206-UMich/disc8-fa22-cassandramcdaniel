@@ -17,7 +17,12 @@ def getAdmissionsInfo2019(soup):
     tr_list = table_tag.find_all('tr')
     school_year_dict = {}
     for tr_tag in tr_list:
+        td_list = tr_tag.find_all('td')
+        school_name = td_list[0].text.strip()
+        year = td_list[1].text.strip()
+        school_year_dict[school_name] = year
 
+    return school_year_dict
 
     pass
 
@@ -25,7 +30,12 @@ def getAdmissionsInfo2019(soup):
 
 def main():
     # Task 1: Create a BeautifulSoup object and name it soup. Refer to discussion slides or lecture slides to complete this
-    url = 
+    url = 'https:/en.wikipedia.org/University_of_Michigan'
+    r = requests.get(url).text
+    soup = BeautifulSoup(r, 'html.parser')
+    get_link(soup)
+    get_school_founded_year(soup)
+
     #### YOUR CODE HERE####
 
     #Call the functions getLink(soup) and getAdmissionsInfo2019(soup) on your soup object.
